@@ -17,8 +17,16 @@
         <textarea style="height:150px" name="description" placeholder="Description"></textarea>
     </div>
     <div>
-        <strong>Price</strong>
+        <strong>Price:</strong>
         <input type="number" name="price" placeholder="Price">
+    </div>
+    <div>
+        <strong>Category:</strong>
+        <select name="category_id">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
     </div>
     <div>
         <button type="submit">Submit</button>

@@ -18,8 +18,21 @@
         <textarea style="height:150px" name="description" placeholder="Description">{{ $product->description }}</textarea>
     </div>
     <div>
-        <strong>Price</strong>
+        <strong>Price:</strong>
         <input type="number" name="price" value="{{ $product->price }}">
+    </div>
+    <div>
+        <strong>Category:</strong>
+        <select name="category_id">
+            @foreach ($categories as $category)
+                @if ($category->id == $product->category_id)
+                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                @else
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endif
+            @endforeach
+
+        </select>
     </div>
     <div>
         <button type="submit">Submit</button>
