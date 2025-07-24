@@ -58,8 +58,37 @@
        </div>
 
        <div class="offset-1 col-10">
-           <!-- レビューを実装する箇所になります -->
-       </div>
+           <div class="row">
+            @foreach ($reviews as $review)
+                <div class="offset-md-5 col-md-5">
+                    <p class="h3">{{$review->title}}</p>
+                    <p class="h3">{{$review->content}}</p>
+                    <label>{{$review->created_at}} {{$review->user->name}}</label>
+                </div>
+            @endforeach
+           </div>
+       </div><br />
+       @auth
+           <div class="row">
+            <div class="offset-md-5 col-md-5">
+                <form action="{{route('reviews.store')}}" method="post">
+                    @csrf
+                    <h4>タイトル</h4>
+                    @error('title')
+                        <strong>タイトルを入力してください</strong>
+                    @enderror
+                    <textarea name="title" class="form-control m-2"></textarea>
+                    <h4>レビュー内容</h4>
+                    @error('content')
+                        <strong>レビュー内容を入力してください</strong>
+                    @enderror
+                    <textarea name="content" class="form-control m-2"></textarea>
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <button type="submit" class="btn samuraimart-submit-button ml-2">レビューを追加</button>
+                </form>
+            </div>
+           </div>
+       @endauth
    </div>
 </div>
 @endsection
