@@ -22,13 +22,13 @@
        <div class="form-group">
            <label for="product-category">カテゴリ</label>
            <select name="category_id" class="form-control" id="product-category">
-               @foreach ($categories as $category)
-               @if ($category->id == $product->category_id)
-               <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-               @else
-               <option value="{{ $category->id }}">{{ $category->name }}</option>
-               @endif
-               @endforeach
+            @foreach ($categories as $category)
+                @if ($category->id == $product->category_id)
+                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                @else
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endif
+            @endforeach
            </select>
        </div>
        <button type="submit" class="btn btn-danger">更新</button>
