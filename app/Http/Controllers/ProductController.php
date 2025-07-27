@@ -15,10 +15,16 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->keyword;
+
         if ($request->category !== null) {
             $products = Product::where('category_id', $request->category)->paginate(15);
             $total_count = Product::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
+        } elseif ($keyword !== null) {
+            $products = Product::where('name', 'like', "%{$keyword}%")->paginate(15);
+            $total_count = $products->total();
+            $category = null;
         } else {
         // Productモデルのデータを15件ずつ、ページネーションで表示
         $products = Product::paginate(15);
@@ -31,7 +37,7 @@ class ProductController extends Controller
         $major_category_names = Category::pluck('major_category_name')->unique();
 
         //resources\views\productsディレクトリの中にあるindex.blade.phpを呼び出し、変数$products...をビューに渡す。
-        return view('products.index', compact('products', 'total_count', 'category', 'categories', 'major_category_names'));
+        return view('products.index', compact('products', 'total_count', 'category', 'categories', 'major_category_names', 'keyword'));
     }
 
     /**
