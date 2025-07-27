@@ -17,8 +17,13 @@ class ProductController extends Controller
     {
         // Productモデルのデータを15件ずつ、ページネーションで表示
         $products = Product::paginate(15);
-        //resources\views\productsディレクトリの中にあるindex.blade.phpを呼び出し、変数$productsをビューに渡す。
-        return view('products.index', compact('products'));
+
+        $categories = Category::all();
+        // 全カテゴリーのデータからmajor_category_nameのカラムのみを取得。その上でunique()を使い、重複している部分を削除。
+        $major_category_names = Category::pluck('major_category_name')->unique();
+
+        //resources\views\productsディレクトリの中にあるindex.blade.phpを呼び出し、変数$products...をビューに渡す。
+        return view('products.index', compact('products', 'categories', 'major_category_names'));
     }
 
     /**
