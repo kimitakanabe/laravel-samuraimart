@@ -13,17 +13,25 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->category !== null) {
+            $products = Product::where('category_id', $request->category)->paginate(15);
+            $total_count = Product::where('category_id', $request->category)->count();
+            $category = Category::find($request->category);
+        } else {
         // Productモデルのデータを15件ずつ、ページネーションで表示
         $products = Product::paginate(15);
+        $total_count = "";
+        $category = null;
+        }
 
         $categories = Category::all();
         // 全カテゴリーのデータからmajor_category_nameのカラムのみを取得。その上でunique()を使い、重複している部分を削除。
         $major_category_names = Category::pluck('major_category_name')->unique();
 
         //resources\views\productsディレクトリの中にあるindex.blade.phpを呼び出し、変数$products...をビューに渡す。
-        return view('products.index', compact('products', 'categories', 'major_category_names'));
+        return view('products.index', compact('products', 'total_count', 'category', 'categories', 'major_category_names'));
     }
 
     /**
