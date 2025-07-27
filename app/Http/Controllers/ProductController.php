@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // Productモデルのデータを15件ずつ、ページネーションで表示
+        $products = Product::paginate(15);
         //resources\views\productsディレクトリの中にあるindex.blade.phpを呼び出し、変数$productsをビューに渡す。
         return view('products.index', compact('products'));
     }
