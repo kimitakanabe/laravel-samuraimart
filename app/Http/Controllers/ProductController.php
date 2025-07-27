@@ -18,17 +18,17 @@ class ProductController extends Controller
         $keyword = $request->keyword;
 
         if ($request->category !== null) {
-            $products = Product::where('category_id', $request->category)->paginate(15);
+            $products = Product::where('category_id', $request->category)->sortable()->paginate(15);
             $total_count = Product::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
         } elseif ($keyword !== null) {
             // nameカラムと$keywordの部分一致検索（SQL文：WHERE name LIKE '%{$keyword}%'）
-            $products = Product::where('name', 'like', "%{$keyword}%")->paginate(15);
+            $products = Product::where('name', 'like', "%{$keyword}%")->sortable()->paginate(15);
             $total_count = $products->total();
             $category = null;
         } else {
         // Productモデルのデータを15件ずつ、ページネーションで表示
-        $products = Product::paginate(15);
+        $products = Product::sortable()->paginate(15);
         $total_count = "";
         $category = null;
         }
