@@ -40,4 +40,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('favorites/{product_id}', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::delete('favorites/{product_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('users/mypage', 'mypage')->name('mypage');
+        Route::get('users/mypage/edit', 'edit')->name('mypage.edit');
+        Route::put('users/mypage', 'update')->name('mypage.update');
+    });
+
 });
