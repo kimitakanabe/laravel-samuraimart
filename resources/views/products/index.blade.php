@@ -22,6 +22,7 @@
             {{-- @sortablelinkはソートするためのリンクを追加する関数。第1引数にソートするカラム名、第2引数にビューに表示する文字列を指定 --}}
             @sortablelink('id', 'ID')
             @sortablelink('price', 'Price')
+            @sortablelink('created_at', 'Created_At' )
         </div>
        <div class="container mt-4">
            <div class="row w-100">
