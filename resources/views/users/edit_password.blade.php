@@ -4,7 +4,7 @@
     <div class="container">
         <form action="{{route('mypage.update_password')}}" method="post">
             @csrf
-            <input type="hidden" name="_method" value=put>
+            <input type="hidden" name="_method" value="put">
             <div class="form-group row mb-3">
                 <label for="password" class="col-md-3 col-form-label text-md-right">新しいパスワード</label>
                 <div class="col-md-7">
