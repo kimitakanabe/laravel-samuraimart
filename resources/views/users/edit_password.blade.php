@@ -4,10 +4,9 @@
     <div class="container">
         <form action="{{route('mypage.update_password')}}" method="post">
             @csrf
-            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="_method" value=put>
             <div class="form-group row mb-3">
                 <label for="password" class="col-md-3 col-form-label text-md-right">新しいパスワード</label>
-
                 <div class="col-md-7">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
