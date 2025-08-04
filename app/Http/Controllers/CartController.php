@@ -36,7 +36,18 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // ユーザーのIDを元にカートのデータを作成し、add()関数を使って送信されたデータを元に商品を追加しています。
+        Cart::instance(Auth::user()->id)->add(
+            [
+                'id' => $request->id,
+                'name' => $request->name,
+                'qty' => $request->qty,
+                'price' => $request->price,
+                'weight' => $request->weight,
+            ]
+        );
+
+        return to_route('products.show', $request->get('id'));
     }
 
 
