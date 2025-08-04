@@ -75,6 +75,8 @@
            <div class="row">
             @foreach ($reviews as $review)
                 <div class="offset-md-5 col-md-5">
+                    {{-- str_repeat() 関数は、指定された文字列を指定された回数だけ繰り返した文字列を返す関数 --}}
+                    <h3 class="review-score-color">{{ str_repeat('★', $review->score) }}</h3>
                     <p class="h3">{{$review->title}}</p>
                     <p class="h3">{{$review->content}}</p>
                     <label>{{$review->created_at}} {{$review->user->name}}</label>
@@ -87,6 +89,14 @@
             <div class="offset-md-5 col-md-5">
                 <form action="{{route('reviews.store')}}" method="post">
                     @csrf
+                    <h4>評価</h4>
+                            <select name="score" class="form-control m-2 review-score-color">
+                                <option value="5" class="review-score-color">★★★★★</option>
+                                <option value="4" class="review-score-color">★★★★</option>
+                                <option value="3" class="review-score-color">★★★</option>
+                                <option value="2" class="review-score-color">★★</option>
+                                <option value="1" class="review-score-color">★</option>
+                            </select>
                     <h4>タイトル</h4>
                     @error('title')
                         <strong>タイトルを入力してください</strong>
