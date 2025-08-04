@@ -52,8 +52,12 @@
            </div>
 
        </div>
-        <h1>新着商品</h1>
-         <div class="row">
+       <div class="d-flex justify-content-between">
+            <h1>新着商品</h1>
+            <a href="{{ route('products.index', ['sort' => 'id', 'direction' => 'desc']) }}">もっと見る</a>
+       </div>
+
+       <div class="row">
            <div class="col-3">
                <a href="#">
                    <img src="{{ asset('img/robot-vacuum-cleaner.jpg') }}" class="img-thumbnail">
