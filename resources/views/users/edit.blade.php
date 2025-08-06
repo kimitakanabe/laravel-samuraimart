@@ -89,7 +89,8 @@
                </div>
 
                <hr>
-               <button type="submit" class="btn samuraimart-submit-button mt-3 w-25">
+               {{-- ブラウザのバリデーションをformnovalidateで無効化（教材にはない）--}}
+               <button type="submit" formnovalidate class="btn samuraimart-submit-button mt-3 w-25">
                    保存
                </button>
 

@@ -37,6 +37,14 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        // $request->validate([
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        //     'postal_code'=>['required', 'string'],
+        //     'address'=>['required', 'string'],
+        //     'phone'=>['required', 'string'],
+        //     ]);
+
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
@@ -52,7 +60,8 @@ class UserController extends Controller
 
     public function update_password(Request $request)
     {
-        $validatedData = $request->validate([
+        // 現状なら、$validatedData =　を消してしまってもいい
+         $validatedData = $request->validate([
             'password' => 'required|confirmed',
         ]);
 

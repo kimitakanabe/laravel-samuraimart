@@ -62,11 +62,13 @@
                 買い物を続ける
             </a>
             @if ($total > 0)
+            {{-- モーダル起動トリガー --}}
             <div class="btn samuraimart-submit-button" data-bs-toggle="modal" data-bs-target="#buy-confirm-modal">購入を確定する</div>
             @else
-            {{-- 合計金額が0円の場合は「購入を確定する」ボタンをクリックできない --}}
+            {{-- 合計金額が0円の場合は「購入を確定する」ボタンをクリックできない disabledクラスがつき、見た目も機能も無効化される--}}
             <div class="btn samuraimart-submit-button disabled" data-bs-toggle="modal" data-bs-target="#buy-confirm-modal">購入を確定する</div>
             @endif
+            {{-- モーダル本体 --}}
             <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
