@@ -34,7 +34,8 @@
                    </form>
                </div>
                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                    <form method="post" action="{{ route('carts.store') }}" >
+                    <form method="post" action="{{ route('carts.store') }}" class="m-3 align-items-end">
+                        @csrf
                         <input type="hidden" name="id" value="{{ $favorite_product->id }}">
                         <input type="hidden" name="name" value="{{ $favorite_product->name }}">
                         <input type="hidden" name="price" value="{{ $favorite_product->price }}">
