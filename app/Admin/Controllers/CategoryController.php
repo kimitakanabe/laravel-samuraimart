@@ -22,10 +22,12 @@ class CategoryController extends AdminController
      *
      * @return Grid
      */
+        // gridメソッド：データの一覧表示を簡単に作成できるLaravel-Adminパッケージの一部です。データベースのデータをグリッド形式で表示する機能。
     protected function grid()
     {
-        $grid = new Grid(new Category());
-
+        // gridメソッドは、Laravel-AdminのGridクラスのインスタンスに対して使用
+        $grid = new Grid(new Category()); //CategoryモデルのインスタンスをGridに設定
+        // $gridからcolumnメソッドを使用、第１引数：出力したいテーブルのカラム名を指定、第２引数：ラベル名
         $grid->column('id', __('Id'))->sortable();
         $grid->column('name', __('Name'));
         $grid->column('description', __('Description'));
