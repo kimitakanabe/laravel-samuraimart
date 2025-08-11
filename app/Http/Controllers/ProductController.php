@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\MajorCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -21,24 +22,26 @@ class ProductController extends Controller
             $products = Product::where('category_id', $request->category)->sortable()->paginate(15);
             $total_count = Product::where('category_id', $request->category)->count();
             $category = Category::find($request->category);
+            $major_category = MajorCategory::find($category->major_category_id);
         } elseif ($keyword !== null) {
             // nameカラムと$keywordの部分一致検索（SQL文：WHERE name LIKE '%{$keyword}%'）
             $products = Product::where('name', 'like', "%{$keyword}%")->sortable()->paginate(15);
             $total_count = $products->total();
             $category = null;
+            $major_category = null;
         } else {
         // Productモデルのデータを15件ずつ、ページネーションで表示
         $products = Product::sortable()->paginate(15);
         $total_count = "";
         $category = null;
+        $major_category = null;
         }
 
         $categories = Category::all();
-        // 全カテゴリーのデータからmajor_category_nameのカラムのみを取得。その上でunique()を使い、重複している部分を削除。
-        $major_category_names = Category::pluck('major_category_name')->unique();
+        $major_categories = MajorCategory::all();
 
         //resources\views\productsディレクトリの中にあるindex.blade.phpを呼び出し、変数$products...をビューに渡す。
-        return view('products.index', compact('products', 'total_count', 'category', 'categories', 'major_category_names', 'keyword'));
+        return view('products.index', compact('products', 'total_count', 'category', 'major_category', 'categories', 'major_categories', 'keyword'));
     }
 
     /**
