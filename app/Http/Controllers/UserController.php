@@ -91,4 +91,15 @@ class UserController extends Controller
 
         return view('users.favorite', compact('favorite_products'));
     }
+
+    public function destroy(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        // 教材では Auth::user()->delete();だが、それだとdeleteに赤波線が入るので以下のように変更した。
+        $user = Auth::user();
+        $user->delete();
+
+
+        return redirect('/');
+    }
 }
