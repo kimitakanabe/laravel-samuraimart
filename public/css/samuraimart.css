@@ -183,3 +183,9 @@ label {
     color: #ffffff;
     background-color: #d94b0e;
 }
+
+th,
+td {
+    /* !importantは、CSSのプロパティ値の直後に記述し、プロパティを強制的に最優先で使用させる命令 */
+    background-color: #f8fafc !important;
+}
