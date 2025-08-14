@@ -42,6 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('users/mypage/favorite', 'favorite')->name('mypage.favorite');
         Route::delete('users/mypage/delete', 'destroy')->name('mypage.destroy');
         Route::get('users/mypage/cart_history', 'cart_history_index')->name('mypage.cart_history');
+        Route::get('users/mypage/cart_history/{num}', 'cart_history_show')->name('mypage.cart_history_show');
     });
 
     Route::controller(CartController::class)->group(function () {

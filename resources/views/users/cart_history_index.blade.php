@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -25,7 +25,7 @@
                                 <td>{{ $billing['created_at'] }}</td>
                                 <td>{{ $billing['total'] }}</td>
                                 <td>
-                                    <a href="{{ route('mypage.cart_history_show'), $billing['id']}}">
+                                    <a href="{{ route('mypage.cart_history_show', $billing['id']) }}">
                                         詳細を確認する
                                     </a>
                                 </td>
@@ -35,7 +35,7 @@
                 </table>
             </div>
 
-            {{ $bilings->links() }}
+            {{ $billings->links() }}
         </div>
     </div>
 </div>
